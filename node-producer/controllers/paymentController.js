@@ -1,8 +1,5 @@
 const { sendMessageToKafka } = require("../service/messageService");
-
-const TSYS_TOPIC = "tsys";
-const INTERNAL_TOPIC = "internal";
-const AFS_TOPIC = "afs";
+const config = require("../config/config");
 
 exports.sendMessage = (req, res) => {
 	const paymentMethod = req.body.transferDetails.transferType.toLowerCase();
@@ -14,25 +11,25 @@ exports.sendMessage = (req, res) => {
 		throw new Error("Error has been occurred");
 	}
 
-	if (paymentMethod === INTERNAL_TOPIC) {
-		sendMessageToKafka(data, INTERNAL_TOPIC);
+	if (paymentMethod === config.kafka.TOPICS.INTERNAL) {
+		sendMessageToKafka(data, config.kafka.TOPICS.INTERNAL);
 		res.status(200).json({
 			status: "SUCCESS",
-			message: `Transfer was moved successfully to ${INTERNAL_TOPIC} topic`,
+			message: `Transfer was moved successfully to ${config.kafka.TOPICS.INTERNAL} topic`,
 			data,
 		});
-	} else if (paymentMethod === TSYS_TOPIC) {
-		sendMessageToKafka(data, TSYS_TOPIC);
+	} else if (paymentMethod === config.kafka.TOPICS.TSYS) {
+		sendMessageToKafka(data, config.kafka.TOPICS.TSYS);
 		res.status(200).json({
 			status: "SUCCESS",
-			message: `Transfer was moved successfully to ${AFS_TOPIC} topic`,
+			message: `Transfer was moved successfully to ${config.kafka.TOPICS.TSYS} topic`,
 			data,
 		});
-	} else if (paymentMethod === AFS_TOPIC) {
-		sendMessageToKafka(data, AFS_TOPIC);
+	} else if (paymentMethod === config.kafka.TOPICS.AFS) {
+		sendMessageToKafka(data, config.kafka.TOPICS.AFS);
 		res.status(200).json({
 			status: "SUCCESS",
-			message: `Transfer was moved successfully to ${AFS_TOPIC} topic`,
+			message: `Transfer was moved successfully to ${config.kafka.TOPICS.AFS} topic`,
 			data,
 		});
 	} else {

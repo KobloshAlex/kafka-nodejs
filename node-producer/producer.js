@@ -1,22 +1,18 @@
-const { Kafka } = require("kafkajs");
+const messages = require("./input.json");
+const { sendMessageToKafka } = require("./service/messageService");
+const config = require("./config/config");
 
-exports.sendMessageToKafka = (message, topic) => {
-	const kafka = new Kafka({
-		clientId: "my-producer",
-		brokers: ["127.0.0.1:9092"],
-	});
-
-	const producer = kafka.producer();
-
-	const run = async () => {
-		await producer.connect();
-		await producer.send({
-			topic,
-			messages: [{ value: JSON.stringify(message) }],
-		});
-	};
-
-	producer.disconnect();
-
-	run().catch(console.error);
-};
+let i = 0;
+setInterval(function () {
+	i = i >= messages.length - 1 ? 0 : i + 1;
+	const message = messages[i];
+	const transferType = message.transferDetails.transferType.toLowerCase();
+	console.log(transferType);
+	if (transferType === config.kafka.TOPICS.TSYS) {
+		sendMessageToKafka(message, config.kafka.TOPICS.TSYS);
+	} else if (transferType === config.kafka.TOPICS.INTERNAL) {
+		sendMessageToKafka(message, config.kafka.TOPICS.INTERNAL);
+	} else if (transferType === config.kafka.TOPICS.AFS) {
+		sendMessageToKafka(message, config.kafka.TOPICS.AFS);
+	}
+}, 1000);
