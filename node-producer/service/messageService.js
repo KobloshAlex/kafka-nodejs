@@ -1,7 +1,6 @@
 const { Kafka } = require("kafkajs");
 const config = require("../config/config");
 
-
 exports.sendMessageToKafka = (message, topic) => {
 	const kafka = new Kafka({
 		clientId: config.kafka.CLIENT_ID, // optional for logging ID
@@ -12,7 +11,7 @@ exports.sendMessageToKafka = (message, topic) => {
 
 	const run = async () => {
 		await producer.connect(); // connect to kafka broker
-    // take massage and send as JSON
+		// take massage and send as JSON
 		await producer.send({
 			topic,
 			messages: [{ value: JSON.stringify(message) }],

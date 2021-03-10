@@ -3,7 +3,7 @@ const { sendMessageToKafka } = require("./service/messageService");
 const config = require("./config/config");
 
 let i = 0;
-setInterval(function () {
+setInterval(() => {
 	i = i >= messages.length - 1 ? 0 : i + 1;
 	const message = messages[i];
 	const transferType = message.transferDetails.transferType.toLowerCase();
