@@ -1,0 +1,44 @@
+[
+	{
+		"transferId": "000000000001",
+		"fromAccount": "123412413",
+		"toAccount": "15932138",
+		"transferDetails:": {
+			"currency": "USD",
+			"amount": 34,
+			"transferType": "INTERNAL"
+		},
+		"recurrence": {
+			"frequency": "ONCE",
+			"numberOfRecurrence": "0"
+		}
+	},
+	{
+		"transferId": "000000003231",
+		"fromAccount": "123412413",
+		"toAccount": "15932138",
+		"transferDetails:": {
+			"currency": "USD",
+			"amount": 123.2,
+			"transferType": "TSYS"
+		},
+		"recurrence": {
+			"frequency": "WEEKLY",
+			"numberOfRecurrence": "5"
+		}
+	},
+	{
+		"transferId": "000000022101",
+		"fromAccount": "123412413",
+		"toAccount": "15932138",
+		"transferDetails:": {
+			"currency": "USD",
+			"amount": 3123,
+			"transferType": "AFS"
+		},
+		"recurrence": {
+			"frequency": "MONTHLY",
+			"numberOfRecurrence": "12"
+		}
+	}
+]

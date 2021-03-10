@@ -5,13 +5,13 @@ const kafka = new Kafka({
     brokers: ["127.0.0.1:9092"]
   });
 
-  const consumer = kafka.consumer({ groupId: "payments-mongo-group" });
+  const consumer = kafka.consumer({ groupId: "payments-group" });
 
   const run = async () => {
     await consumer.connect();
-    await consumer.subscribe({ topic: "payments-debit"});
-    await consumer.subscribe({ topic: "payments-credit"});
-    await consumer.subscribe({ topic: "payments-cash"});
+    await consumer.subscribe({ topic: "payments-debit", fromBeginning: true });
+    await consumer.subscribe({ topic: "payments-credit", fromBeginning: true });
+    await consumer.subscribe({ topic: "payments-cash", fromBeginning: true});
     
 
     await consumer.run({
@@ -19,11 +19,8 @@ const kafka = new Kafka({
           console.log({
             topic,
             offset: message.offset,
-            value: JSON.parse(message.value),
+            value: message.value.toString(),
           });
-          const data = JSON.parse(message.value);
-
-          console.log(data.paymentEventId);
         },
       });
   };
