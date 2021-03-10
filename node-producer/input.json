@@ -3,7 +3,7 @@
 		"transferId": "000000000001",
 		"fromAccount": "123412413",
 		"toAccount": "15932138",
-		"transferDetails:": {
+		"transferDetails": {
 			"currency": "USD",
 			"amount": 34,
 			"transferType": "INTERNAL"
@@ -17,7 +17,7 @@
 		"transferId": "000000003231",
 		"fromAccount": "123412413",
 		"toAccount": "15932138",
-		"transferDetails:": {
+		"transferDetails": {
 			"currency": "USD",
 			"amount": 123.2,
 			"transferType": "TSYS"
@@ -31,7 +31,7 @@
 		"transferId": "000000022101",
 		"fromAccount": "123412413",
 		"toAccount": "15932138",
-		"transferDetails:": {
+		"transferDetails": {
 			"currency": "USD",
 			"amount": 3123,
 			"transferType": "AFS"
